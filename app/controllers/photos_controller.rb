@@ -26,7 +26,6 @@ class PhotosController < ApplicationController
   # POST /photos
   # POST /photos.json
   def create
-    byebug
     @photo = Photo.create!(photo_params)
 
     respond_to do |format|

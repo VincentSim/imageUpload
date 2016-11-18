@@ -1,9 +1,18 @@
-<%= simple_form_for(photo, remote: true, url: photos_path ) do |f| %>
+<%#= simple_form_for(photo, remote: true, url: photos_path ) do |f| %>
 
-  <%= f.input :image, as: :file %>
-  <%= f.input :article_id, as: :hidden, :input_html => { value: @article.id} %>
+  <%#= f.input :image, as: :file %>
+  <%#= f.input :article_id, as: :hidden, :input_html => { value: @article.id} %>
 
   <div class="actions">
-    <%= f.submit %>
+    <%#= f.submit %>
   </div>
+<%# end %>
+<%= simple_form_for photo, url: {action: "add_file"}, :html => {id: "my-dropzone", class: "dropzone"}  do |j| %>
+<div class="dz-message" data-dz-message><span>Ajoutez ici les fichiers nécessaires pour compléter votre appel d'offres.</span>
+
+</div>
+<% end %>
+
+<%= content_for(:js) do %>
+
 <% end %>

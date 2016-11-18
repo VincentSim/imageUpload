@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :set_article, only: [:show, :add_file, :edit, :update, :destroy]
 
   # GET /articles
   # GET /articles.json
@@ -18,6 +18,16 @@ class ArticlesController < ApplicationController
     @photos = @article.photos.build
   end
 
+  def add_file
+    @photo = Photo.create({image: params[:file], article: @article })
+    @photo.save
+    #render nothing: true
+    respond_to do |format|
+      format.html { redirect_to article_path(@article) }
+      format.js
+      format.json { render nothing: true }
+    end
+  end
   # GET /articles/1/edit
   def edit
     @photo = Photo.new
@@ -71,6 +81,6 @@ class ArticlesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
-      params.require(:article).permit(:title, :body )
+      params.require(:article).permit(:title, :body, {files: []}, :file)
     end
 end
