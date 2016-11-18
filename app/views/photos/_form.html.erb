@@ -1,0 +1,9 @@
+<%= simple_form_for(photo, remote: true, url: photos_path ) do |f| %>
+
+  <%= f.input :image, as: :file %>
+  <%= f.input :article_id, as: :hidden, :input_html => { value: @article.id} %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

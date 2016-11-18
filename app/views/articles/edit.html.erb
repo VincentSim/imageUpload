@@ -1,0 +1,12 @@
+<h1>Editing Article</h1>
+
+<%= render 'form', article: @article %>
+
+
+<% @article.photos.each do |p| %>
+  <%= image_tag p.image.url %>
+<% end %>
+<%= render 'photos/form', photo: @photo %>
+
+<%= link_to 'Show', @article %> |
+<%= link_to 'Back', articles_path %>
